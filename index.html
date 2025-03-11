@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Anindita Pattnayak</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #121212;
+            color: #fff;
+            text-align: center;
+            transition: background 0.5s, color 0.5s;
+        }
+        header {
+            background: linear-gradient(90deg, #ff7eb3, #75ff75);
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 2.5rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            background: #333;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ff7eb3;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 40px 0;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .contact-section {
+            background: #222;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 3px 3px 15px rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        .contact-section h2 {
+            color: #64f896;
+            margin-bottom: 20px;
+        }
+        .contact-section p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .contact-section a {
+            color: #6cf3f3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .project-card {
+            background: #292929;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 3px 3px 15px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, background 0.3s;
+            margin-bottom: 20px;
+        }
+        .project-card:hover {
+            transform: scale(1.05);
+            background: #3a3a3a;
+        }
+        .skills-bar {
+            background: #444;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .skills-fill {
+            height: 100%;
+            background: #7efff9;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+        footer {
+            background: #222;
+            color: white;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anindita Pattnayak</h1>
+        <p>Bachelor's in Computer Application | Software Developer</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <p>A highly motivated and detail-oriented fresher with a strong foundation in computer applications.</p>
+        </section>
+        <section id="skills" class="section">
+            <h2>Technical Skills</h2>
+            <p>Java | Python | C | C++ | HTML | CSS | JavaScript | React.js | Node.js | Express.js | MySQL | MongoDB</p>
+            <div class="skills-bar">
+                <div class="skills-fill" style="width: 90%;"></div>
+            </div>
+        </section>
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="project-card">
+                <h3>Library Management System</h3>
+                <p>Developed using Java, MySQL, and Swing.</p>
+            </div>
+            <div class="project-card">
+                <h3>E-Commerce Website</h3>
+                <p>Built using React.js, Node.js, MongoDB, and Express.js.</p>
+            </div>
+            <div class="project-card">
+                <h3>Online Examination System</h3>
+                <p>Created using Django, Python, and MySQL.</p>
+            </div>
+            <div class="project-card">
+                <h3>Hospital Management System</h3>
+                <p>Designed using Angular, Spring Boot, and Oracle.</p>
+            </div>
+            <div class="project-card">
+                <h3>AI Chatbot for Customer Support</h3>
+                <p>Implemented with Python, Flask, and Dialog Flow.</p>
+            </div>
+            <div class="project-card">
+                <h3>To-Do Application</h3>
+                <p>Developed using HTML, CSS, JavaScript, and Local Storage.</p>
+            </div>
+            <div class="project-card">
+                <h3>Portfolio Website</h3>
+                <p>Created using React.js and Bootstrap.</p>
+            </div>
+        </section>
+        <div class="container">
+            <section id="contact" class="section">
+                <div class="contact-section">
+                    <h2>Contact Me</h2>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:aninditapattnayak0@gmail.com">aninditapattnayak0@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> Phone: +91 8117808183</p>
+                    <p><i class="fab fa-github"></i> GitHub: <a href="#">github.com/anindita</a></p>
+                    <p><i class="fas fa-globe"></i> Portfolio: <a href="#">anindita-portfolio.com</a></p>
+                    <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="#">linkedin.com/in/anindita</a></p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Anindita Pattnayak. All Rights Reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const skillFill = document.querySelector(".skills-fill");
+            setTimeout(() => {
+                skillFill.style.width = "90%";
+            }, 500);
+        });
+    </script>
+</body>
+</html>
