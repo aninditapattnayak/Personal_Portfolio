@@ -6,6 +6,7 @@
     <title>Portfolio - Anindita Pattnayak</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
         * {
             margin: 0;
@@ -13,191 +14,444 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        body {
-            background-color: #121212;
-            color: #fff;
-            text-align: center;
-            transition: background 0.5s, color 0.5s;
-        }
-        header {
-            background: linear-gradient(90deg, #ff7eb3, #75ff75);
-            padding: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            font-size: 2.5rem;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            background: #333;
-            padding: 15px;
-            border-radius: 10px;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover {
-            color: #ff7eb3;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 40px 0;
+
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #50c878;
+            --dark-bg: #0a192f;
+            --light-text: #e6f1ff;
+            --card-bg: #112240;
         }
 
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 40px 0;
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
         }
+
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: 0.1s;
+            z-index: 9999;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)),
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-content p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            padding: 20px 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
         .section {
-            margin: 40px 0;
+            padding: 100px 0;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .contact-section {
-            background: #222;
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(74, 144, 226, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 3px 3px 15px rgba(255, 255, 255, 0.1);
-            max-width: 600px;
-            margin: auto;
         }
-        .contact-section h2 {
-            color: #64f896;
+
+        .form-group {
             margin-bottom: 20px;
         }
-        .contact-section p {
-            font-size: 1.2rem;
-            margin: 10px 0;
-        }
-        .contact-section a {
-            color: #6cf3f3;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .contact-section a:hover {
-            text-decoration: underline;
-        }
-        .section {
-            margin: 40px 0;
-        }
-        .project-card {
-            background: #292929;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 3px 3px 15px rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s, background 0.3s;
-            margin-bottom: 20px;
-        }
-        .project-card:hover {
-            transform: scale(1.05);
-            background: #3a3a3a;
-        }
-        .skills-bar {
-            background: #444;
-            height: 10px;
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
             border-radius: 5px;
-            overflow: hidden;
-            margin-top: 10px;
+            color: var(--light-text);
+            font-size: 1rem;
         }
-        .skills-fill {
-            height: 100%;
-            background: #7efff9;
-            width: 0%;
-            transition: width 1s ease-in-out;
+
+        .form-group textarea {
+            height: 150px;
+            resize: none;
         }
-        footer {
-            background: #222;
+
+        .submit-btn {
+            background: var(--primary-color);
             color: white;
-            padding: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .social-links {
+            position: fixed;
+            left: 40px;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-links::after {
+            content: '';
+            width: 2px;
+            height: 100px;
+            background: var(--light-text);
+            margin: 0 auto;
+        }
+
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background: var(--card-bg);
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                display: none;
+            }
+
+            .header-content h1 {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Anindita Pattnayak</h1>
-        <p>Bachelor's in Computer Application | Software Developer</p>
-    </header>
+    <div class="cursor"></div>
+
     <nav>
         <ul>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <div class="container">
-        <section id="about" class="section">
-            <h2>About Me</h2>
-            <p>A highly motivated and detail-oriented fresher with a strong foundation in computer applications.</p>
-        </section>
-        <section id="skills" class="section">
-            <h2>Technical Skills</h2>
-            <p>Java | Python | C | C++ | HTML | CSS | JavaScript | React.js | Node.js | Express.js | MySQL | MongoDB</p>
-            <div class="skills-bar">
-                <div class="skills-fill" style="width: 90%;"></div>
-            </div>
-        </section>
-        <section id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="project-card">
-                <h3>Library Management System</h3>
-                <p>Developed using Java, MySQL, and Swing.</p>
-            </div>
-            <div class="project-card">
-                <h3>E-Commerce Website</h3>
-                <p>Built using React.js, Node.js, MongoDB, and Express.js.</p>
-            </div>
-            <div class="project-card">
-                <h3>Online Examination System</h3>
-                <p>Created using Django, Python, and MySQL.</p>
-            </div>
-            <div class="project-card">
-                <h3>Hospital Management System</h3>
-                <p>Designed using Angular, Spring Boot, and Oracle.</p>
-            </div>
-            <div class="project-card">
-                <h3>AI Chatbot for Customer Support</h3>
-                <p>Implemented with Python, Flask, and Dialog Flow.</p>
-            </div>
-            <div class="project-card">
-                <h3>To-Do Application</h3>
-                <p>Developed using HTML, CSS, JavaScript, and Local Storage.</p>
-            </div>
-            <div class="project-card">
-                <h3>Portfolio Website</h3>
-                <p>Created using React.js and Bootstrap.</p>
-            </div>
-        </section>
-        <div class="container">
-            <section id="contact" class="section">
-                <div class="contact-section">
-                    <h2>Contact Me</h2>
-                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:aninditapattnayak0@gmail.com">aninditapattnayak0@gmail.com</a></p>
-                    <p><i class="fas fa-phone"></i> Phone: +91 8117808183</p>
-                    <p><i class="fab fa-github"></i> GitHub: <a href="#">github.com/anindita</a></p>
-                    <p><i class="fas fa-globe"></i> Portfolio: <a href="#">anindita-portfolio.com</a></p>
-                    <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="#">linkedin.com/in/anindita</a></p>
-                </div>
-            </section>
+
+    <header id="home">
+        <div class="header-content" data-aos="fade-up">
+            <h1>Anindita Pattnayak</h1>
+            <p>Full Stack Developer | Creative Problem Solver</p>
         </div>
+    </header>
+
+    <section id="about" class="section">
+        <h2 data-aos="fade-up">About Me</h2>
+        <div class="about-content">
+            <div class="about-text" data-aos="fade-right">
+                <p>I am a passionate Full Stack Developer with a Bachelor's degree in Computer Application. My journey in technology has equipped me with a diverse skill set and a keen eye for creating efficient, scalable solutions.</p>
+                <p>I specialize in building modern web applications using cutting-edge technologies and best practices. My goal is to create meaningful digital experiences that solve real-world problems.</p>
+            </div>
+            <div class="about-image" data-aos="fade-left">
+                <!-- Add your professional image here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <h2 data-aos="fade-up">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card" data-aos="flip-left">
+                <i class="fas fa-code"></i>
+                <h3>Frontend Development</h3>
+                <p>React.js, HTML5, CSS3, JavaScript, Bootstrap</p>
+            </div>
+            <div class="skill-card" data-aos="flip-left" data-aos-delay="100">
+                <i class="fas fa-server"></i>
+                <h3>Backend Development</h3>
+                <p>Node.js, Express.js, Python, Java</p>
+            </div>
+            <div class="skill-card" data-aos="flip-left" data-aos-delay="200">
+                <i class="fas fa-database"></i>
+                <h3>Database Management</h3>
+                <p>MongoDB, MySQL, PostgreSQL</p>
+            </div>
+            <div class="skill-card" data-aos="flip-left" data-aos-delay="300">
+                <i class="fas fa-tools"></i>
+                <h3>Tools & Technologies</h3>
+                <p>Git, Docker, AWS, REST APIs</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2 data-aos="fade-up">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" data-aos="fade-up">
+                <img src="project1.jpg" alt="E-Commerce Website" class="project-img">
+                <div class="project-content">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A full-stack e-commerce solution with advanced features like real-time inventory management and secure payment integration.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="project2.jpg" alt="AI Chatbot" class="project-img">
+                <div class="project-content">
+                    <h3>AI Customer Support Chatbot</h3>
+                    <p>An intelligent chatbot system that handles customer queries using natural language processing.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Dialog Flow</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="project3.jpg" alt="Hospital Management" class="project-img">
+                <div class="project-content">
+                    <h3>Hospital Management System</h3>
+                    <p>A comprehensive system for managing hospital operations, patient records, and appointments.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Oracle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 data-aos="fade-up">Get In Touch</h2>
+        <div class="contact-form" data-aos="fade-up">
+            <form>
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="social-links">
+        <a href="https://github.com/anindita" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/anindita" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:aninditapattnayak0@gmail.com"><i class="fas fa-envelope"></i></a>
     </div>
+
     <footer>
         <p>&copy; 2024 Anindita Pattnayak. All Rights Reserved.</p>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const skillFill = document.querySelector(".skills-fill");
-            setTimeout(() => {
-                skillFill.style.width = "90%";
-            }, 500);
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 25, 47, 0.95)';
+            } else {
+                nav.style.background = 'transparent';
+            }
         });
     </script>
 </body>
