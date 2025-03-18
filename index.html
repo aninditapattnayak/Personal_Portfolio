@@ -476,7 +476,7 @@
             <h2 class="section-title" data-aos="fade-up">About Me</h2>
             <div class="about-grid">
                 <div class="about-content" data-aos="fade-right">
-                    <p>I am a passionate Full Stack Developer with expertise in building modern web applications. With a Bachelor's degree in Computer Application and hands-on experience with cutting-edge technologies, I create efficient and scalable solutions that solve real-world problems.</p>
+                    <p>I am a passionate Full Stack Developer with expertise in building modern web applications. With a Bachelor's degree in Computer Application and hands-on experience with cutting-edge technologies, I create efficient and scalable solutions that solve real-world problems.</p> <br>
                     <p>My approach combines technical excellence with creative problem-solving, ensuring that every project I undertake delivers maximum value and exceptional user experience.</p>
                 </div>
                 <div class="about-image" data-aos="fade-left">
@@ -595,8 +595,8 @@
     </section>
 
     <div class="social-links">
-        <a href="https://github.com/anindita" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/anindita" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/aninditapattnayak" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/anindita-pattnayak-021537314" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
         <a href="mailto:aninditapattnayak0@gmail.com"><i class="fas fa-envelope"></i></a>
     </div>
 
@@ -608,42 +608,63 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
+        // Initialize AOS with error handling
+        try {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+        } catch (error) {
+            console.error('AOS initialization error:', error);
+        }
 
-        // Mobile menu toggle
+        // Mobile menu toggle with error handling
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
         
-        mobileMenu.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
+        if (mobileMenu && navLinks) {
+            mobileMenu.addEventListener('click', () => {
+                try {
+                    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                } catch (error) {
+                    console.error('Mobile menu toggle error:', error);
+                }
+            });
+        }
 
-        // Smooth scroll
+        // Smooth scroll with error handling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Close mobile menu if open
-                if (window.innerWidth <= 768) {
-                    navLinks.style.display = 'none';
+                try {
+                    e.preventDefault();
+                    const element = document.querySelector(this.getAttribute('href'));
+                    if (element) {
+                        element.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        // Close mobile menu if open
+                        if (window.innerWidth <= 768 && navLinks) {
+                            navLinks.style.display = 'none';
+                        }
+                    }
+                } catch (error) {
+                    console.error('Smooth scroll error:', error);
                 }
             });
         });
 
-        // Navbar scroll effect
+        // Navbar scroll effect with error handling
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(15, 23, 42, 0.95)';
-            } else {
-                nav.style.background = 'rgba(15, 23, 42, 0.8)';
+            try {
+                const nav = document.querySelector('nav');
+                if (nav) {
+                    nav.style.background = window.scrollY > 100 ? 
+                        'rgba(15, 23, 42, 0.95)' : 
+                        'rgba(15, 23, 42, 0.8)';
+                }
+            } catch (error) {
+                console.error('Navbar scroll effect error:', error);
             }
         });
     </script>
